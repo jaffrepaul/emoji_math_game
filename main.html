@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Document</title>
+</head>   
+<body>
+
+    <div id="flex-container">
+        <input type="number" id='input0'>
+
+        <select id="operations" name="operations" class="math">
+            <option value="+">&#x2b;</option>
+            <option value="-">&#x2212;</option>
+            <option value="*">&#xd7</option>
+            <option value="/">&#247;</option>
+        </select>
+        
+        <input type="number" id='input1'>
+        <span class="math">=</span>
+        <input id="answer" type=number autofocus="autofocus">
+        <audio id="wrongAnswer">
+            <source src="./sound_effects/boing_x.wav" type="audio/wav">
+        </audio>
+        <audio id="rightAnswer">
+            <source src="./sound_effects/boxing_bell.wav" type="audio/wav">
+        </audio>
+        <div id="result">
+            <div id="buttons">
+                <button class="action-btn" onclick="operationCheck()">Try It!</button>
+                <button class="action-btn" onclick="reload()">Try Again?</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="emoji_game.js"></script>
+    <script>populateRandomInputs()</script>
+</body>
+</html>
