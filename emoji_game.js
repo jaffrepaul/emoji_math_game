@@ -1480,6 +1480,16 @@ function reload() {
     return false;
 }
 
+function playSound(val) {
+    isCorrectAnswer(val) ?
+    document.getElementById("rightAnswer").play() :
+        document.getElementById("wrongAnswer").play()
+}
+
+function isCorrectAnswer(val) {
+    return !val.includes('!');
+}
+
 function displayCorrectAnswer(val) {
     // if answered correctly, make element and append to DOM,
      // otherwise if it's showing don't run again with Try Again! button
@@ -1488,8 +1498,7 @@ function displayCorrectAnswer(val) {
         const span = document.createElement('span');
         span.id = 'correctAns';
         span.innerHTML = val;
-        const rightAnsSound = document.getElementById("rightAnswer");
-        rightAnsSound.play();
+        playSound(val);
         return target.appendChild(span);
     }
         return;
@@ -1503,31 +1512,25 @@ function displayInCorrectAnswer(val) {
         const span = document.createElement('span');
         span.id = 'inCorrectAns';
         span.innerHTML = val;
-        const wrongAnsSound = document.getElementById("wrongAnswer");
-        wrongAnsSound.play();
+        playSound(val);
         return target.appendChild(span);
     }
         return;
 }
 
 function showValue(val) {
-    const wrongAnswer = val.includes('!');
-    const rightAnswer = !val.includes('!');
-
-    // if right answer, make element and append to DOM
-    if (rightAnswer) displayCorrectAnswer(val);
-
-    // if wrong answer, make element and append to DOM
-    if (wrongAnswer) displayInCorrectAnswer(val);
+    // if right answer, show result on screen. otherwise show incorrect result
+    if (isCorrectAnswer(val)) displayCorrectAnswer(val)
+    else if (!isCorrectAnswer(val)) displayInCorrectAnswer(val)
 
     // remove right ans & replace with wrong ans text if that happened
-    if (wrongAnswer && document.getElementById('correctAns')) {
+    if (!isCorrectAnswer(val) && document.getElementById('correctAns')) {
         document.getElementById('correctAns').remove();
         return displayInCorrectAnswer(val);
     }
 
     // remove wrong ans text & replace with rigth ans if that happened
-    if (rightAnswer && document.getElementById('inCorrectAns')) {
+    if (isCorrectAnswer(val) && document.getElementById('inCorrectAns')) {
         document.getElementById('inCorrectAns').remove();
         return displayCorrectAnswer(val);
     }
