@@ -1411,6 +1411,18 @@ const emojis = [...smilyAndPeople, ...animalsAndNature, ...foodAndDrink, ...trav
 const rightAnswerDisplayed = document.getElementById('correctAns');
 const wrongAnswerDisplayed = document.getElementById('inCorrectAns');
 
+//document.addEventListener("keypress", (e) => {
+//    if (e.key === "Enter") {
+//        toggleFullScreen();
+//    }
+//}, false);
+
+//function toggleFullScreen() {
+//  if (!document.fullscreenElement) {
+//      document.documentElement.requestFullscreen();
+//  }
+//}
+
 function populateRandomInputs() {
     document.getElementById('input0').value = Math.round(Math.random() * 20);
     document.getElementById('input1').value = Math.round(Math.random() * 10);
