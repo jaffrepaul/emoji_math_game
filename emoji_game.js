@@ -1428,7 +1428,7 @@ function populateRandomInputs() {
     document.getElementById('input1').value = Math.round(Math.random() * 10);
 }
 
-function getValues() {
+function getCurrentValues() {
     const x = document.getElementById("operations").selectedIndex;
     return {
         num1: document.getElementById("input0").value,
@@ -1457,7 +1457,7 @@ function getRandomEmoji(array) {
 }
 
 function operationCheck() {
-    const { num1, num2, answer, operation } = getValues();
+    const { num1, num2, answer, operation } = getCurrentValues();
 
     if (eval(`${num1} ${operation} ${num2}`) === answer) {
         showValue(getRandomEmoji(emojis))
@@ -1498,9 +1498,7 @@ function playSound(val) {
         document.getElementById("wrongAnswer").play()
 }
 
-function isCorrectAnswer(val) {
-    return !val.includes('!');
-}
+const isCorrectAnswer = val => !val.includes('!');
 
 function displayCorrectAnswer(val) {
     // if answered correctly, make element and append to DOM,
@@ -1511,7 +1509,7 @@ function displayCorrectAnswer(val) {
         span.id = 'correctAns';
         span.innerHTML = val;
         playSound(val);
-        return target.appendChild(span);
+        target.appendChild(span);
     }
         return;
 }
@@ -1525,7 +1523,7 @@ function displayInCorrectAnswer(val) {
         span.id = 'inCorrectAns';
         span.innerHTML = val;
         playSound(val);
-        return target.appendChild(span);
+        target.appendChild(span);
     }
         return;
 }
@@ -1545,6 +1543,12 @@ function showValue(val) {
     if (isCorrectAnswer(val) && document.getElementById('inCorrectAns')) {
         document.getElementById('inCorrectAns').remove();
         return displayCorrectAnswer(val);
+    }
+    
+    // display wrong answer again on subsequent incorrect answers
+    if (!isCorrectAnswer(val) && document.getElementById('inCorrectAns')) {
+        document.getElementById('inCorrectAns').remove();
+        return displayInCorrectAnswer(val);
     }
 }
 
