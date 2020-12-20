@@ -1475,6 +1475,15 @@ document.querySelector("#answer")
         }
     })
 
+// capture 'N' key & map to 'New Quiz?'
+window.addEventListener("keyup", (event) => {
+    event.preventDefault();
+    if (event.code === 'KeyN') {
+        console.log('hi');
+        document.querySelector("#new-quiz").click();
+    }
+})
+
 // put focus back in answer field after field operations change
 document.getElementById("operations").onchange = () => {
     document.getElementById("answer").focus(); 
@@ -1544,7 +1553,7 @@ function showValue(val) {
         document.getElementById('inCorrectAns').remove();
         return displayCorrectAnswer(val);
     }
-    
+
     // display wrong answer again on subsequent incorrect answers
     if (!isCorrectAnswer(val) && document.getElementById('inCorrectAns')) {
         document.getElementById('inCorrectAns').remove();
