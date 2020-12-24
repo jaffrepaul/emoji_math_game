@@ -6,7 +6,7 @@
 // [x] Make func to return sum of two nums, If sum is correct, trigger random emoji pull or error message if incorrect
 // [x] Make UI to accept 2 nums & result  as input & button to submit. Nums get passed to sum func. Submit runs func. 
 
-const smilyAndPeople = [
+const smileyAndPeople = [
     '😀',
     '😃',
     '😄',
@@ -421,7 +421,6 @@ const animalsAndNature = [
     '🌖',
     '🌗',
     '🌘',
-    '🌑',
     '🌒',
     '🌓',
     '🌔',
@@ -445,7 +444,6 @@ const animalsAndNature = [
     '🌥',
     '🌦',
     '🌈',
-    '☁️',
     '🌧',
     '⛈',
     '🌩',
@@ -1406,7 +1404,7 @@ const travelAndPlaces = [
     '🥌',
 ];
 
-const emojis = [...smilyAndPeople, ...animalsAndNature, ...foodAndDrink, ...travelAndPlaces];
+const emojis = [...smileyAndPeople, ...animalsAndNature, ...foodAndDrink, ...travelAndPlaces];
 
 const rightAnswerDisplayed = document.getElementById('correctAns');
 const wrongAnswerDisplayed = document.getElementById('inCorrectAns');
@@ -1471,15 +1469,14 @@ document.querySelector("#answer")
     .addEventListener("keyup", (event) => {
         event.preventDefault();
         if (event.keyCode === 13) {
-            document.querySelector(".action-btn").click();
+            document.querySelector("#try-it").click();
         }
     })
-
+    
 // capture 'N' key & map to 'New Quiz?'
 window.addEventListener("keyup", (event) => {
     event.preventDefault();
     if (event.code === 'KeyN') {
-        console.log('hi');
         document.querySelector("#new-quiz").click();
     }
 })

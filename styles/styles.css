@@ -98,3 +98,14 @@ button:active {
 .math {
     font-size: 75px;
 }
+/*#tips {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: row-reverse;
+}*/
+#button-reps {
+    height: fit-content;
+    width: fit-content;
+    padding: 0px 3px;
+    border: solid black .5px;
+}

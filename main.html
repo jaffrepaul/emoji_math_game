@@ -7,9 +7,10 @@
     <title>Document</title>
 </head>   
 <body>
-    <div id="fullscreen">
-    <!--<p>Press <span id="button-reps">Enter</span> for fullscreen / <span id="button-reps">Esc</span> to exit</p>-->
-</div>
+    <!--<div id="tips">
+        <p>Press <span id="button-reps">Enter</span> to submit</p>
+        <p>Press <span id="button-reps">N</span> for new quiz</p>
+    </div>-->
 
     <div id="flex-container">
         <input type="number" id='input0'>
@@ -27,10 +28,11 @@
         
         <audio id="wrongAnswer" src="./sound_effects/boing.wav" preload="auto"></audio>
         <audio id="rightAnswer" src="./sound_effects/boxing_bell.mp3" preload="auto"></audio>
+        <!--<audio id="newGame" src="./sound_effects/new_game.wav" preload="auto"></audio>-->
 
         <div id="result">
             <div id="buttons">
-                <button class="action-btn" onclick="operationCheck()">Try It!</button>
+                <button id="try-it" class="action-btn" onclick="operationCheck()">Try It!</button>
                 <button id="new-quiz" class="action-btn" onclick="reload()">New Quiz?</button>
             </div>
         </div>
