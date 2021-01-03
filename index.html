@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/styles.css">
-    <title>Document</title>
+    <title>Do math 👉 Get Emoji</title>
+    <style>
+        .swal-button {
+            height: 40px;
+            width: 80px
+        }
+    </style>
 </head>   
 <body>
     <div id="tips">
         <!--<p>Press <span id="button-reps">Enter</span> to submit</p>
         <p>Press <span id="button-reps">N</span> for new quiz</p>-->
-        <span>&#63;</span>
+        <!--<span>&#63;</span>-->
     </div>
 
     <div id="flex-container">
@@ -25,11 +31,10 @@
         
         <input type="number" id='input1'>
         <span class="math">=</span>
-        <input id="answer" type=number autofocus="autofocus">
+        <input id="answer" type=number>
         
         <audio id="wrongAnswer" src="./sound_effects/boing.wav" preload="auto"></audio>
         <audio id="rightAnswer" src="./sound_effects/boxing_bell.mp3" preload="auto"></audio>
-        <!--<audio id="newGame" src="./sound_effects/new_game.wav" preload="auto"></audio>-->
 
         <div id="result">
             <div id="buttons">
@@ -41,5 +46,13 @@
 
     <script type="text/javascript" src="emoji_game.js"></script>
     <script>populateRandomInputs()</script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        swal({
+            title: 'Do math 👉 Get Emoji',
+            text: '1. Use mouse or input answer\n 2. Use arrow keys to change input\n3. Press Enter to submit\n4. Press N key for new quiz\n',
+        }).then(() => document.getElementById('answer').focus());
+    </script>
+
 </body>
 </html>

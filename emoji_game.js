@@ -1409,18 +1409,6 @@ const emojis = [...smileyAndPeople, ...animalsAndNature, ...foodAndDrink, ...tra
 const rightAnswerDisplayed = document.getElementById('correctAns');
 const wrongAnswerDisplayed = document.getElementById('inCorrectAns');
 
-//document.addEventListener("keypress", (e) => {
-//    if (e.key === "Enter") {
-//        toggleFullScreen();
-//    }
-//}, false);
-
-//function toggleFullScreen() {
-//  if (!document.fullscreenElement) {
-//      document.documentElement.requestFullscreen();
-//  }
-//}
-
 function populateRandomInputs() {
     document.getElementById('input0').value = Math.round(Math.random() * 20);
     document.getElementById('input1').value = Math.round(Math.random() * 10);
@@ -1455,14 +1443,27 @@ function getRandomEmoji(array) {
 }
 
 function operationCheck() {
-    const { num1, num2, answer, operation } = getCurrentValues();
+    const { num1, num2, submittedAnswer, operation } = getCurrentValues();
 
-    if (eval(`${num1} ${operation} ${num2}`) === answer) {
+    if (eval(`${num1} ${operation} ${num2}`) === submittedAnswer) {
         showValue(getRandomEmoji(emojis))
     } else {
         showValue('Try again! 🤪');
     }
 }
+
+// fullscreen control
+//document.addEventListener("keypress", (e) => {
+//    if (e.key === "Enter") {
+//        toggleFullScreen();
+//    }
+//}, false);
+
+//function toggleFullScreen() {
+//  if (!document.fullscreenElement) {
+//      document.documentElement.requestFullscreen();
+//  }
+//}
 
 // capture pressing Enter & submit answer 
 document.querySelector("#answer")
