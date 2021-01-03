@@ -1420,7 +1420,7 @@ function getCurrentValues() {
         num1: document.getElementById("input0").value,
         num2: document.getElementById("input1").value,
         operation: document.getElementsByTagName("option")[x].value,
-        answer: Number(document.getElementById("answer").value),
+        submittedAnswer: Number(document.getElementById("answer").value),
     }
 }
 
