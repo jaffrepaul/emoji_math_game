@@ -1405,9 +1405,58 @@ const travelAndPlaces = [
 ];
 
 const emojis = [...smileyAndPeople, ...animalsAndNature, ...foodAndDrink, ...travelAndPlaces];
-
 const rightAnswerDisplayed = document.getElementById('correctAns');
 const wrongAnswerDisplayed = document.getElementById('inCorrectAns');
+
+// fullscreen control
+//document.addEventListener("keypress", (e) => {
+//    if (e.key === "Enter") {
+//        toggleFullScreen();
+//    }
+//}, false);
+
+//function toggleFullScreen() {
+//  if (!document.fullscreenElement) {
+//      document.documentElement.requestFullscreen();
+//  }
+//}
+
+//window.onload = function () {
+//    if (localStorage.getItem("hasCodeRunBefore") === null) {
+//        /** Your code here. **/
+//        localStorage.setItem("hasCodeRunBefore", true);
+//    }
+//}
+
+// capture 'N' key & map to 'New Quiz?'
+window.addEventListener("keyup", (event) => {
+    event.preventDefault();
+    if (event.code === 'KeyN') {
+        document.querySelector("#new-quiz").click();
+    }
+})
+
+// capture pressing Enter & submit answer
+document.querySelector("#answer")
+    .addEventListener("keyup", (event) => {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.querySelector("#try-it").click();
+        }
+    })
+
+
+// put focus back in answer field after field operations change
+document.getElementById("operations").onchange = () => {
+    document.getElementById("answer").focus();
+}
+
+// put focus back in answer field after answer submitted
+document.querySelector(".action-btn")
+    .addEventListener("click", (event) => {
+        event.preventDefault();
+        document.getElementById("answer").focus();
+    })
 
 function populateRandomInputs() {
     document.getElementById('input0').value = Math.round(Math.random() * 20);
@@ -1451,48 +1500,6 @@ function operationCheck() {
         showValue('Try again! 🤪');
     }
 }
-
-// fullscreen control
-//document.addEventListener("keypress", (e) => {
-//    if (e.key === "Enter") {
-//        toggleFullScreen();
-//    }
-//}, false);
-
-//function toggleFullScreen() {
-//  if (!document.fullscreenElement) {
-//      document.documentElement.requestFullscreen();
-//  }
-//}
-
-// capture pressing Enter & submit answer 
-document.querySelector("#answer")
-    .addEventListener("keyup", (event) => {
-        event.preventDefault();
-        if (event.keyCode === 13) {
-            document.querySelector("#try-it").click();
-        }
-    })
-    
-// capture 'N' key & map to 'New Quiz?'
-window.addEventListener("keyup", (event) => {
-    event.preventDefault();
-    if (event.code === 'KeyN') {
-        document.querySelector("#new-quiz").click();
-    }
-})
-
-// put focus back in answer field after field operations change
-document.getElementById("operations").onchange = () => {
-    document.getElementById("answer").focus(); 
-}
-
-// put focus back in answer field after answer submitted
-document.querySelector(".action-btn")
-    .addEventListener("click", (event) => {
-        event.preventDefault();
-        document.getElementById("answer").focus(); 
-    })
 
 function reload() {
     location.reload();
