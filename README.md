@@ -1,5 +1,5 @@
-Emoji Math
 # Project Title
+Emoji Math
 
 Do Math 👉 Get Emoji(s)
 
