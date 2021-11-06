@@ -1376,8 +1376,12 @@ document.querySelector("#answer")
     })
 
 
-// put focus back in answer field after field operations change
-document.getElementById("operations").onchange = () => {
+// put focus back in answer field after operation or input change
+document.addEventListener("input", function() {
+    setFocusToAnswerBox();
+});
+
+function setFocusToAnswerBox() {
     document.getElementById("answer").focus();
 }
 
