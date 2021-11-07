@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,17 @@
             height: 40px;
             width: 80px
         }
+
         .swal-button:focus {
             box-shadow: none;
         }
+
+        .swal-text {
+            line-height: 1.75;
+        }
     </style>
-</head>   
+</head>
+
 <body>
     <div id="flex-container">
         <input type="number" id='input0'>
@@ -25,34 +32,36 @@
             <option value="*">&#xd7</option>
             <option value="/">&#247;</option>
         </select>
-        
+
         <input type="number" id='input1'>
         <span class="math">=</span>
         <input id="answer" type=number autofocus>
-        
+
         <audio id="wrongAnswer" src="./sound_effects/boing.wav" preload="auto"></audio>
         <audio id="rightAnswer" src="./sound_effects/boxing_bell.mp3" preload="auto"></audio>
 
         <div id="result">
             <div id="buttons">
-                <button id="try-it" class="action-btn" onclick="operationCheck()">Try It!</button>
+                <button id="try-it" class="action-btn" onclick="calculationCheck()">Try It!</button>
                 <button id="new-quiz" class="action-btn" onclick="reload()">New Quiz?</button>
             </div>
         </div>
     </div>
 
     <script type="text/javascript" src="emoji_game.js"></script>
-    <script>populateRandomInputs()</script>
+    <script>setRandomInputsAndOperation()</script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         if (sessionStorage.getItem("hasCodeRunBefore") === null) {
             swal({
-                title: 'Do Math 👉 Get Emoji',
-                text: '1. Use mouse or input answer\n 2. Use arrow keys to change input\n3. Press Enter to submit\n4. Press N key for new quiz\n',
+                className: "boxstyle",
+                title: 'Do Math 👉 Get Emoji(s)',
+                text: '1. Use mouse or keyboard to input answer\n 2. Use ⬆️⬇️ keys to change input\n3. Press Enter to submit\n4. Press "N" key for new quiz\n',
             }).then(() => document.getElementById('answer').focus());
             sessionStorage.setItem("hasCodeRunBefore", true);
         }
     </script>
 
 </body>
+
 </html>
