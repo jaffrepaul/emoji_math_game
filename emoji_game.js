@@ -1392,9 +1392,14 @@ document.querySelector(".action-btn")
         document.getElementById("answer").focus();
     })
 
-function populateRandomInputs() {
+function setRandomInputsAndOperation() {
     document.getElementById('input0').value = Math.round(Math.random() * 20);
     document.getElementById('input1').value = Math.round(Math.random() * 10);
+
+    const operationsSelector = document.getElementById('operations');
+    const operations = operationsSelector.getElementsByTagName('option');
+    const operationsIndex = Math.floor(Math.random() * operations.length);
+    operationsSelector.selectedIndex = operationsIndex;
 }
 
 function getCurrentValues() {
@@ -1425,7 +1430,7 @@ function getRandomEmoji(array) {
     return shuffledArray.slice(0, 3).join('   '); 
 }
 
-function operationCheck() {
+function calculationCheck() {
     const { num1, num2, submittedAnswer, operation } = getCurrentValues();
 
     if (eval(`${num1} ${operation} ${num2}`) === submittedAnswer) {
