@@ -5,6 +5,7 @@
 // [x] Make func to randomly select any 3 or the emoji
 // [x] Make func to return sum of two nums, If sum is correct, trigger random emoji pull or error message if incorrect
 // [x] Make UI to accept 2 nums & result  as input & button to submit. Nums get passed to sum func. Submit runs func. 
+// [] randomize inputs & operator on page refresh
 
 const smileyAndPeople = [
     '😀',
@@ -113,7 +114,6 @@ const smileyAndPeople = [
     '🤛',
     '🤜',
     '🤞',
-    '✌️',
     '🤘',
     '👌',
     '👈',
@@ -141,15 +141,12 @@ const smileyAndPeople = [
     '👀',
     '🧠',
     '🗣',
-    '👤',
-    '👥',
     '👶',
     '👦',
     '👧',
     '👨',
     '👩',
     '👱‍♀',
-    '👱',
     '👴',
     '👵',
     '👲',
@@ -298,7 +295,6 @@ const smileyAndPeople = [
     '👓',
     '🕶',
     '🌂',
-    '☂️',
 ];
 
 const animalsAndNature = [
@@ -397,7 +393,6 @@ const animalsAndNature = [
     '🌴',
     '🌱',
     '🌿',
-    '☘️',
     '🍀',
     '🎍',
     '🎋',
@@ -420,8 +415,6 @@ const animalsAndNature = [
     '🌕',
     '🌖',
     '🌗',
-    '🌘',
-    '🌒',
     '🌓',
     '🌔',
     '🌚',
@@ -437,8 +430,6 @@ const animalsAndNature = [
     '⚡️',
     '🔥',
     '💥',
-    '☄',
-    '☀️',
     '🌤',
     '⛅️',
     '🌥',
@@ -569,8 +560,6 @@ const foodAndDrink = [
 ];
 
 const objects = [
-    '📁',
-    '📂',
     '⌚',
     '📱',
     '📲',
@@ -584,7 +573,6 @@ const objects = [
     '🗜',
     '💽',
     '💾',
-    '💿',
     '📀',
     '📼',
     '📷',
@@ -627,7 +615,6 @@ const objects = [
     '⚖️',
     '🔧',
     '🔨',
-    '⚒',
     '🛠',
     '⛏',
     '🔩',
@@ -640,13 +627,10 @@ const objects = [
     '⚔️',
     '🛡',
     '🚬',
-    '⚰️',
-    '⚱️',
     '🏺',
     '🔮',
     '📿',
     '💈',
-    '⚗️',
     '🔭',
     '🔬',
     '🕳',
@@ -693,7 +677,6 @@ const objects = [
     '📮',
     '📯',
     '📜',
-    '📃',
     '📄',
     '📑',
     '📊',
@@ -708,7 +691,6 @@ const objects = [
     '🗳',
     '🗄',
     '📋',
-    '📁',
     '📂',
     '🗂',
     '🗞',
@@ -733,11 +715,9 @@ const objects = [
     '✂️',
     '🖊',
     '🖋',
-    '✒️',
     '🖌',
     '🖍',
     '📝',
-    '✏️',
     '🔍',
     '🔎',
     '🔏',
@@ -1012,7 +992,6 @@ const symbols = [
     '💜',
     '🖤',
     '💔',
-    '❣️',
     '💕',
     '💞',
     '💓',
@@ -1107,8 +1086,6 @@ const symbols = [
     '✅',
     '🈯️',
     '💹',
-    '❇️',
-    '✳️',
     '❎',
     '🌐',
     '💠',
@@ -1169,21 +1146,11 @@ const symbols = [
     '⏪',
     '⏫',
     '⏬',
-    '◀️',
     '🔼',
     '🔽',
-    '➡️',
     '⬅️',
     '⬆️',
     '⬇️',
-    '↗️',
-    '↘️',
-    '↙️',
-    '↖️',
-    '↕️',
-    '↔️',
-    '↪️',
-    '↩️',
     '⤴️',
     '⤵️',
     '🔀',
@@ -1193,12 +1160,6 @@ const symbols = [
     '🔃',
     '🎵',
     '🎶',
-    '➕',
-    '➖',
-    '➗',
-    '✖️',
-    '💲',
-    '💱',
     '™️',
     '©️',
     '®️',
@@ -1211,7 +1172,6 @@ const symbols = [
     '🔝',
     '🔜',
     '✔️',
-    '☑️',
     '🔘',
     '⚪️',
     '⚫️',
@@ -1225,12 +1185,6 @@ const symbols = [
     '🔷',
     '🔳',
     '🔲',
-    '▪️',
-    '▫️',
-    '◾️',
-    '◽️',
-    '◼️',
-    '◻️',
     '⬛️',
     '⬜️',
     '🔈',
@@ -1245,37 +1199,13 @@ const symbols = [
     '💬',
     '💭',
     '🗯',
-    '♠️',
-    '♣️',
-    '♥️',
-    '♦️',
     '🃏',
     '🎴',
     '🀄️',
-    '🕐',
     '🕑',
     '🕒',
     '🕓',
     '🕔',
-    '🕕',
-    '🕖',
-    '🕗',
-    '🕘',
-    '🕙',
-    '🕚',
-    '🕛',
-    '🕜',
-    '🕝',
-    '🕞',
-    '🕟',
-    '🕠',
-    '🕡',
-    '🕢',
-    '🕣',
-    '🕤',
-    '🕥',
-    '🕦',
-    '🕧',
 ];
 
 const travelAndPlaces = [
@@ -1446,8 +1376,12 @@ document.querySelector("#answer")
     })
 
 
-// put focus back in answer field after field operations change
-document.getElementById("operations").onchange = () => {
+// put focus back in answer field after operation or input change
+document.addEventListener("input", function() {
+    setFocusToAnswerBox();
+});
+
+function setFocusToAnswerBox() {
     document.getElementById("answer").focus();
 }
 
@@ -1458,9 +1392,14 @@ document.querySelector(".action-btn")
         document.getElementById("answer").focus();
     })
 
-function populateRandomInputs() {
+function setRandomInputsAndOperation() {
     document.getElementById('input0').value = Math.round(Math.random() * 20);
     document.getElementById('input1').value = Math.round(Math.random() * 10);
+
+    const operationsSelector = document.getElementById('operations');
+    const operations = operationsSelector.getElementsByTagName('option');
+    const operationsIndex = Math.floor(Math.random() * operations.length);
+    operationsSelector.selectedIndex = operationsIndex;
 }
 
 function getCurrentValues() {
@@ -1491,7 +1430,7 @@ function getRandomEmoji(array) {
     return shuffledArray.slice(0, 3).join('   '); 
 }
 
-function operationCheck() {
+function calculationCheck() {
     const { num1, num2, submittedAnswer, operation } = getCurrentValues();
 
     if (eval(`${num1} ${operation} ${num2}`) === submittedAnswer) {
