@@ -1331,6 +1331,9 @@ window.addEventListener('load', () => {
     // Initialize inputs and operation on load
     setRandomInputsAndOperation();
 
+    // Adjust volume for the correct answer sound, original is loud
+    document.getElementById('rightAnswer').volume = 0.2;
+
     // Capture 'N' key & map to 'New Quiz?'
     window.addEventListener("keyup", (event) => {
         event.preventDefault();
