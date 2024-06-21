@@ -1387,12 +1387,22 @@ function reload() {
 }
 
 function setRandomInputsAndOperation() {
-    document.getElementById('input0').value = Math.round(Math.random() * 20);
-    document.getElementById('input1').value = Math.round(Math.random() * 10);
-
     const operationsSelector = document.getElementById('operations');
     const operations = operationsSelector.getElementsByTagName('option');
     const operationsIndex = Math.floor(Math.random() * operations.length);
+    const operation = operations[operationsIndex].value;
+
+    let num1, num2;
+    // adjust division problems to have a whole number result
+    if (operation === '/') {
+        num2 = Math.floor(Math.random() * 10) + 1; // num2 should not be 0
+        num1 = num2 * (Math.floor(Math.random() * 10) + 1); // num1 is a multiple of num2
+    } else {
+        num1 = Math.round(Math.random() * 20);
+        num2 = Math.round(Math.random() * 10);
+    }
+    document.getElementById('input0').value = num1;
+    document.getElementById('input1').value = num2;
     operationsSelector.selectedIndex = operationsIndex;
 }
 
@@ -1475,15 +1485,15 @@ function showValue(val) {
     else displayInCorrectAnswer(val);
 }
 
-function setRandomInputsAndOperation() {
-    document.getElementById('input0').value = Math.round(Math.random() * 20);
-    document.getElementById('input1').value = Math.round(Math.random() * 10);
+// function setRandomInputsAndOperation() {
+//     document.getElementById('input0').value = Math.round(Math.random() * 20);
+//     document.getElementById('input1').value = Math.round(Math.random() * 10);
 
-    const operationsSelector = document.getElementById('operations');
-    const operations = operationsSelector.getElementsByTagName('option');
-    const operationsIndex = Math.floor(Math.random() * operations.length);
-    operationsSelector.selectedIndex = operationsIndex;
-}
+//     const operationsSelector = document.getElementById('operations');
+//     const operations = operationsSelector.getElementsByTagName('option');
+//     const operationsIndex = Math.floor(Math.random() * operations.length);
+//     operationsSelector.selectedIndex = operationsIndex;
+// }
 
 function getCurrentValues() {
     const x = document.getElementById("operations").selectedIndex;
