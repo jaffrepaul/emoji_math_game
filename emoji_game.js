@@ -1506,6 +1506,10 @@ function modernFisherYatesShuffle(array) {
 
 function getRandomEmoji(array) {
     const shuffledArray = modernFisherYatesShuffle(array);
+    const emoji = shuffledArray[0];
+    if (window.innerWidth <= 768) {
+        return emoji; // Return one emoji for small screens
+    }
     return shuffledArray.slice(0, 3).join('   ');
 }
 
