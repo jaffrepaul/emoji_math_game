@@ -1415,6 +1415,10 @@ function modernFisherYatesShuffle(array) {
 }
 
 function getRandomEmoji(array) {
+    // shuffle array, pull out 3 random elements & join 
+    // const shuffled = array.sort(() => 0.5 - Math.random()).slice(0, 3).join('  ');
+
+    // more optimized version of ☝️
     const shuffledArray = modernFisherYatesShuffle(array);
     return shuffledArray.slice(0, 3).join('   ');
 }
@@ -1494,6 +1498,7 @@ function getCurrentValues() {
 function modernFisherYatesShuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
+        // swap in place
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
