@@ -8,50 +8,35 @@
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐶</text></svg>">
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Do Math 👉 Get Emoji</title>
-    <style>
-        .swal-button {
-            height: 40px;
-            width: 80px
-        }
-
-        .swal-button:focus {
-            box-shadow: none;
-        }
-
-        .swal-text {
-            line-height: 1.75;
-        }
-    </style>
 </head>
 
 <body>
     <div id="flex-container">
-        <input type="number" id='input0'>
+        <div id="inputs">
+            <input type="number" id="input0">
 
-        <select id="operations" name="operations" class="math">
-            <option value="+">&#x2b;</option>
-            <option value="-">&#x2212;</option>
-            <option value="*">&#xd7</option>
-            <option value="/">&#247;</option>
-        </select>
+            <select id="operations" name="operations" class="math">
+                <option value="+">&#x2b;</option>
+                <option value="-">&#x2212;</option>
+                <option value="*">&#xd7</option>
+                <option value="/">&#247;</option>
+            </select>
 
-        <input type="number" id='input1'>
-        <span class="math">=</span>
-        <input id="answer" type=number autofocus>
+            <input type="number" id="input1">
+            <span class="math">=</span>
+            <input id="answer" type="number" autofocus>
 
-        <audio id="wrongAnswer" src="./sound_effects/boing.wav" preload="auto"></audio>
-        <audio id="rightAnswer" src="./sound_effects/boxing_bell.mp3" preload="auto"></audio>
-
-        <div id="result">
-            <div id="buttons">
-                <button id="try-it" class="action-btn" onclick="calculationCheck()">Try It!</button>
-                <button id="new-quiz" class="action-btn" onclick="reload()">New Quiz?</button>
-            </div>
+            <audio id="wrongAnswer" src="./sound_effects/boing.wav" preload="auto"></audio>
+            <audio id="rightAnswer" src="./sound_effects/boxing_bell.mp3" preload="auto"></audio>
         </div>
+        <div id="buttons">
+            <button id="try-it" class="action-btn">Try It!</button>
+            <button id="new-quiz" class="action-btn" onclick="reload()">New Quiz?</button>
+        </div>
+        <div id="result-content"></div>
     </div>
 
-    <script type="text/javascript" src="emoji_game.js"></script>
-    <script>setRandomInputsAndOperation()</script>
+    <script src="emoji_game.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         if (sessionStorage.getItem("hasCodeRunBefore") === null) {
@@ -63,7 +48,6 @@
             sessionStorage.setItem("hasCodeRunBefore", true);
         }
     </script>
-
 </body>
 
 </html>
