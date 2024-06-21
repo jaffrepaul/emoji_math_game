@@ -1,12 +1,3 @@
-// const { smilyAndPeople, animalsAndNature, foodAndDrink, travelAndPlaces } = require("./emojiArr");
-// import { smilyAndPeople, animalsAndNature, foodAndDrink, travelAndPlaces } from "./emoji_arr.js";
-
-// [x] Make giant array of emojis
-// [x] Make func to randomly select any 3 or the emoji
-// [x] Make func to return sum of two nums, If sum is correct, trigger random emoji pull or error message if incorrect
-// [x] Make UI to accept 2 nums & result  as input & button to submit. Nums get passed to sum func. Submit runs func. 
-// [] randomize inputs & operator on page refresh
-
 const smileyAndPeople = [
     '😀',
     '😃',
@@ -1340,7 +1331,7 @@ window.addEventListener('load', () => {
     // Initialize inputs and operation on load
     setRandomInputsAndOperation();
 
-    // capture 'N' key & map to 'New Quiz?'
+    // Capture 'N' key & map to 'New Quiz?'
     window.addEventListener("keyup", (event) => {
         event.preventDefault();
         if (event.code === 'KeyN') {
@@ -1348,29 +1339,32 @@ window.addEventListener('load', () => {
         }
     });
 
-    // capture pressing Enter & submit answer
-    document.querySelector("#answer")
-        .addEventListener("keyup", (event) => {
-            event.preventDefault();
-            if (event.keyCode === 13) {
-                document.querySelector("#try-it").click();
-            }
-        });
+    // Capture pressing Enter & submit answer
+    document.querySelector("#answer").addEventListener("keyup", (event) => {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.querySelector("#try-it").click();
+        }
+    });
 
-    // put focus back in answer field after operation or input change
-    document.addEventListener("input", function () {
+    // Validate the answer input to prevent invalid characters
+    // HTML5 inputs accept scientific notation 
+    const invalidChars = ["+", "e", "E"];
+    document.getElementById("answer").addEventListener("input", function (e) {
+        e.target.value = e.target.value.split('').filter(char => !invalidChars.includes(char)).join('');
+    });
+
+    // Put focus back in answer field after operation or input change
+    document.addEventListener("input", setFocusToAnswerBox);
+
+    // Put focus back in answer field after answer submitted
+    document.querySelector("#try-it").addEventListener("click", (event) => {
+        event.preventDefault();
         setFocusToAnswerBox();
     });
 
-    // put focus back in answer field after answer submitted
-    document.querySelector("#try-it")
-        .addEventListener("click", (event) => {
-            event.preventDefault();
-            document.getElementById("answer").focus();
-        });
-
     document.getElementById('try-it').addEventListener('click', calculationCheck);
-    document.getElementById('new-quiz').addEventListener('click', reload); // Attach reload to button
+    document.getElementById('new-quiz').addEventListener('click', reload);
 });
 
 // Move the setFocusToAnswerBox function definition outside of window load event to make it global
@@ -1378,12 +1372,11 @@ function setFocusToAnswerBox() {
     document.getElementById("answer").focus();
 }
 
-// Move the reload function definition outside of window load event to make it global
 function reload() {
     setRandomInputsAndOperation();
     clearResults();
     document.getElementById("answer").value = '';
-    setFocusToAnswerBox(); // Ensure the focus is back to the answer box
+    setFocusToAnswerBox();
 }
 
 function setRandomInputsAndOperation() {
@@ -1393,7 +1386,6 @@ function setRandomInputsAndOperation() {
     const operation = operations[operationsIndex].value;
 
     let num1, num2;
-    // adjust division problems to have a whole number result
     if (operation === '/') {
         num2 = Math.floor(Math.random() * 10) + 1; // num2 should not be 0
         num1 = num2 * (Math.floor(Math.random() * 10) + 1); // num1 is a multiple of num2
@@ -1401,6 +1393,7 @@ function setRandomInputsAndOperation() {
         num1 = Math.round(Math.random() * 20);
         num2 = Math.round(Math.random() * 10);
     }
+
     document.getElementById('input0').value = num1;
     document.getElementById('input1').value = num2;
     operationsSelector.selectedIndex = operationsIndex;
@@ -1413,12 +1406,13 @@ function getCurrentValues() {
         num2: document.getElementById("input1").value,
         operation: document.getElementsByTagName("option")[x].value,
         submittedAnswer: Number(document.getElementById("answer").value),
-    }
+    };
 }
 
 function modernFisherYatesShuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
+        // swap in place
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
@@ -1430,6 +1424,10 @@ function getRandomEmoji(array) {
 
     // more optimized version of ☝️
     const shuffledArray = modernFisherYatesShuffle(array);
+    const emoji = shuffledArray[0];
+    if (window.innerWidth <= 768) {
+        return emoji; // Return one emoji for small screens
+    }
     return shuffledArray.slice(0, 3).join('   ');
 }
 
@@ -1450,101 +1448,6 @@ function playSound(val) {
 }
 
 const isCorrectAnswer = val => !val.includes('!');
-
-function displayCorrectAnswer(val) {
-    clearResults();
-    const target = document.querySelector('#result-content');
-    const span = document.createElement('div');
-    span.id = 'correctAns';
-    span.className = 'result-message';
-    span.textContent = val;
-    target.appendChild(span);
-    playSound(val);
-}
-
-function displayInCorrectAnswer(val) {
-    clearResults();
-    const target = document.querySelector('#result-content');
-    const span = document.createElement('div');
-    span.id = 'inCorrectAns';
-    span.className = 'result-message';
-    span.textContent = val;
-    target.appendChild(span);
-    playSound(val);
-}
-
-function clearResults() {
-    const correctAns = document.getElementById('correctAns');
-    const inCorrectAns = document.getElementById('inCorrectAns');
-    if (correctAns) correctAns.remove();
-    if (inCorrectAns) inCorrectAns.remove();
-}
-
-function showValue(val) {
-    if (isCorrectAnswer(val)) displayCorrectAnswer(val);
-    else displayInCorrectAnswer(val);
-}
-
-// function setRandomInputsAndOperation() {
-//     document.getElementById('input0').value = Math.round(Math.random() * 20);
-//     document.getElementById('input1').value = Math.round(Math.random() * 10);
-
-//     const operationsSelector = document.getElementById('operations');
-//     const operations = operationsSelector.getElementsByTagName('option');
-//     const operationsIndex = Math.floor(Math.random() * operations.length);
-//     operationsSelector.selectedIndex = operationsIndex;
-// }
-
-function getCurrentValues() {
-    const x = document.getElementById("operations").selectedIndex;
-    return {
-        num1: document.getElementById("input0").value,
-        num2: document.getElementById("input1").value,
-        operation: document.getElementsByTagName("option")[x].value,
-        submittedAnswer: Number(document.getElementById("answer").value),
-    }
-}
-
-function modernFisherYatesShuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        // swap in place
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-function getRandomEmoji(array) {
-    const shuffledArray = modernFisherYatesShuffle(array);
-    const emoji = shuffledArray[0];
-    if (window.innerWidth <= 768) {
-        return emoji; // Return one emoji for small screens
-    }
-    return shuffledArray.slice(0, 3).join('   ');
-}
-
-function calculationCheck() {
-    const {num1, num2, submittedAnswer, operation} = getCurrentValues();
-
-    if (eval(`${num1} ${operation} ${num2}`) === submittedAnswer) {
-        showValue(getRandomEmoji(emojis));
-    } else {
-        showValue('Try again! 🤪');
-    }
-}
-
-function reload() {
-    setRandomInputsAndOperation();
-    clearResults();
-    document.getElementById("answer").value = '';
-    setFocusToAnswerBox(); // Ensure the focus is back to the answer box
-}
-
-function playSound(val) {
-    isCorrectAnswer(val) ?
-        document.getElementById("rightAnswer").play() :
-        document.getElementById("wrongAnswer").play();
-}
 
 function displayCorrectAnswer(val) {
     clearResults();
